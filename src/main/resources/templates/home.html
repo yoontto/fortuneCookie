@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf Template</title>
+    <script>
+        function fn_getFortune(){
+            fetch('/api/data')
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById("outerDiv").innerText = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+<!-- 템플릿 내용 추가 -->
+    <h1 th:text="${key}">dd</h1>
+    <button th:id="apiBtn" th:text="'오늘의 행운문구'" th:onclick="fn_getFortune()"></button>
+    <div th:id="outerDiv"></div>
+</body>
+</html>
